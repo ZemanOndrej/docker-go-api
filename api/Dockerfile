@@ -5,11 +5,14 @@ WORKDIR /api
 COPY go.mod . 
 COPY go.sum .
 
-RUN go mod download
-COPY . .
+RUN apk add --no-cache git  \
+    && go mod download \
+    && apk del git 
 
-RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -a -installsuffix cgo -o /go/bin/api
+COPY src/ .
+
+RUN CGO_ENABLED=0 go build -a -installsuffix cgo -o /api/main
 
 FROM scratch 
-COPY --from=build-env /go/bin/api /go/bin/api
-ENTRYPOINT ["/go/bin/api"]
+COPY --from=build-env /api/main /api/main
+ENTRYPOINT ["/api/main"]

@@ -1,16 +1,15 @@
 #!/bin/bash
-PORT=8080
-INNER_PORT=8080
-while getopts p:ip: option
+PORT="8080"
+INNER_PORT="8080"
+while getopts p:i: option
 do
 case "${option}"
 in
-p) PORT=${OPTARG};;
-ip) INNER_PORT=${OPTARG};;
+p) PORT="${OPTARG}";;
+i) INNER_PORT="${OPTARG}";;
 esac
 done
 
-
-docker build -t golang-api . -e 
-docker run --rm -p ${PORT}:${INNER_PORT} golang-api -e PORT=${INNER_PORT} -d
-echo "docker container successfully created"
+docker build -t golang-api .
+docker run --rm -p ${PORT}:${INNER_PORT} golang-api --env PORT=${INNER_PORT}
+echo "docker container successfully created with ${INNER_PORT} mapped to ${PORT}"

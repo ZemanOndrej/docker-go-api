@@ -1,10 +1,7 @@
 package main
 
 import (
-	"fmt"
 	"net/http"
-	"os"
-
 	"github.com/gin-gonic/gin"
 )
 
@@ -16,6 +13,5 @@ func main() {
 			c.String(http.StatusOK, "Welcome to sample dockerized golang api")
 		})
 	}
-	router.Run(":8080")
-	fmt.Println("PORT:", os.Getenv("PORT"))
+	router.Run()
 }
