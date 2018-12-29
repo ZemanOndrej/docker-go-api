@@ -11,5 +11,5 @@ esac
 done
 
 docker build -t golang-api .
-docker run --rm -p ${PORT}:${INNER_PORT} golang-api --env PORT=${INNER_PORT}
+docker run --rm -p ${PORT}:${INNER_PORT} --env PORT=${INNER_PORT} golang-api
 echo "docker container successfully created with ${INNER_PORT} mapped to ${PORT}"
