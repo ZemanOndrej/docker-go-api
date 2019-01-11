@@ -1,0 +1,16 @@
+version: "3"
+services:
+  db:
+    container_name: go-postgres-db
+    build:
+      dockerfile: Dockerfile
+      context: ./db
+    image: go-postgres-db
+  api:
+    container_name: go-api
+    depends_on:
+      - db
+    build:
+      dockerfile: Dockerfile
+      context: ./api
+    image: go-api
