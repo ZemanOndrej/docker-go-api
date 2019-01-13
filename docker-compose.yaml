@@ -1,16 +1,34 @@
 version: "3"
+
+networks:
+  example:
+
 services:
   db:
     container_name: go-postgres-db
     build:
       dockerfile: Dockerfile
       context: ./db
-    image: go-postgres-db
+    environment:
+      POSTGRES_USER: docker
+      POSTGRES_PASSWORD: docker
+      POSTGRES_DB: docker
+    networks:
+      - example
+    ports:
+      - "5432:5432"
   api:
     container_name: go-api
+    environment:
+      DB_HOST: localhost
+      DB_PORT: 5432
+      DB_USER: docker
+      DB_PW: docker
+      DB_NAME: docker
+    networks:
+      - example
     depends_on:
       - db
     build:
       dockerfile: Dockerfile
       context: ./api
-    image: go-api

@@ -2,12 +2,12 @@ FROM golang:alpine as build-env
 
 ENV GO111MODULE=on \
     GOPATH=/go \
-    CGO_ENABLED=0 \
-    DB_HOST=localhost \
-    DB_PORT=5432 \
-    DB_USER=docker \
-    DB_PW=docker \
-    DB_NAME=docker
+    # DB_HOST=localhost \
+    # DB_PORT=5432 \
+    # DB_USER=docker \
+    # DB_PW=docker \
+    # DB_NAME=docker \
+    CGO_ENABLED=0 
 
 RUN mkdir -p /go/src/go-docker-api/api
 
