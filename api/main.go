@@ -3,6 +3,7 @@ package main
 import (
 	"go-docker-api/api/db"
 	"net/http"
+	"time"
 
 	"log"
 
@@ -17,6 +18,7 @@ func main() {
 			c.String(http.StatusOK, "Welcome to sample dockerized golang api")
 		})
 	}
+	time.Sleep(20 * time.Second) //sleep until db image is running
 	ctx := db.GetDBContext()
 	err := ctx.GetDB().Ping()
 	if err != nil {

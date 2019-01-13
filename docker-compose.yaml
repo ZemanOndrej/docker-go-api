@@ -20,7 +20,7 @@ services:
   api:
     container_name: go-api
     environment:
-      DB_HOST: localhost
+      DB_HOST: db
       DB_PORT: 5432
       DB_USER: docker
       DB_PW: docker
