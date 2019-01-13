@@ -6,6 +6,8 @@ import (
 	"log"
 	"os"
 	"time"
+
+	_ "github.com/lib/pq" //import postgres
 )
 
 //BaseDbEntity ...

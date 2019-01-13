@@ -1,9 +1,9 @@
 package main
 
 import (
+	"go-docker-api/api/db"
 	"net/http"
 
-	"docker-api/api/src/db"
 	"log"
 
 	"github.com/gin-gonic/gin"
